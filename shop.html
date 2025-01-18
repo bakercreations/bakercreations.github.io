@@ -24,6 +24,141 @@
       </nav>
     </header>
 
+    <div class="product-container">
+      <!-- Left Column: Image Gallery -->
+      <div class="image-section">
+        <div class="main-image">
+          <img src="images/shop_product_1.png" alt="Main Product Image" />
+          <div class="arrow left">&lt;</div>
+          <div class="arrow right">&gt;</div>
+        </div>
+        <div class="thumbnail-images">
+          <img
+            src="images/shop_product_1.png"
+            alt="Thumbnail 1"
+            class="active"
+          />
+          <img src="images/shop_product_2.png" alt="Thumbnail 2" />
+          <img src="images/shop_product_3.png" alt="Thumbnail 3" />
+          <img src="images/shop_product_4.png" alt="Thumbnail 4" />
+          <img src="images/shop_product_5.png" alt="Thumbnail 5" />
+        </div>
+      </div>
+
+      <!-- Right Column: Product Details -->
+      <div class="product-selection">
+        <h1>Roller Cane</h1>
+        <p>The next generation of muscle recovery</p>
+        <p class="product-price">$49.99</p>
+        <div class="color-options">
+          <label>Color:</label>
+          <span class="active"></span>
+        </div>
+        <div class="quantity-add-cart">
+          <div class="quantity">
+            <button data-action="decrease">-</button>
+            <input type="number" value="1" min="1" />
+            <button data-action="increase">+</button>
+          </div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="container">
+      <div class="section" id="description-section">
+        <div
+          class="section-header"
+          onclick="toggleSection('description-section')"
+        >
+          <span>Description</span>
+          <span class="arrow">&#x2191;</span>
+        </div>
+        <div class="section-content">
+          <p>
+            This is a high-quality product designed for optimal performance and
+            durability. Perfect for everyday use and built to last.
+          </p>
+        </div>
+      </div>
+
+      <div class="section" id="details-section">
+        <div class="section-header" onclick="toggleSection('details-section')">
+          <span>Product Details</span>
+          <span class="arrow">&#x2191;</span>
+        </div>
+        <div class="section-content">
+          <p>
+            Crafted from premium materials, this product features a sleek design
+            and cutting-edge technology. It's easy to use and maintain.
+          </p>
+        </div>
+      </div>
+
+      <div class="section" id="specifications-section">
+        <div
+          class="section-header"
+          onclick="toggleSection('specifications-section')"
+        >
+          <span>Specifications</span>
+          <span class="arrow">&#x2191;</span>
+        </div>
+        <div class="section-content">
+          <ul>
+            <li>Dimensions: 10 x 5 x 2 inches</li>
+            <li>Weight: 1.2 lbs</li>
+            <li>Material: High-strength aluminum</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="shipping-returns-section">
+        <div
+          class="section-header"
+          onclick="toggleSection('shipping-returns-section')"
+        >
+          <span>Shipping & Returns</span>
+          <span class="arrow">&#x2191;</span>
+        </div>
+        <div class="section-content">
+          <p>
+            Free shipping on orders over $50. Returns accepted within 30 days of
+            purchase. See our full return policy for details.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Section -->
+    <div class="additional-section">
+      <div class="additional-item">
+        <img src="images/shop_additional_1.png" alt="Additional Image 1" />
+        <h3>Portable & Travel-Friendly</h3>
+        <p>
+          Compact, lightweight design disassembles for easy storage in your gym
+          bag, backpack, or suitcas making it ideal for athletes and on-the-go
+          lifestyles
+        </p>
+      </div>
+      <div class="additional-item">
+        <img src="images/shop_additional_2.png" alt="Additional Image 2" />
+        <h3>Built to Last</h3>
+        <p>
+          Made from durable, high-quality materials that resist bending and
+          breaking, ensuring reliable use for years
+        </p>
+      </div>
+      <div class="additional-item">
+        <img src="images/shop_additional_3.png" alt="Additional Image 3" />
+        <h3>Satisfaction Guaranteed</h3>
+        <p>
+          Try the Roller Cane risk-free! If you're not completely satisfied,
+          return it within 30 days for a full refund
+        </p>
+      </div>
+    </div>
+
     <footer>
       <p>&copy; 2025 Roller Cane. All rights reserved.</p>
     </footer>
