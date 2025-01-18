@@ -1,77 +1,188 @@
 /* General Styles */
+html,
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  color: #333;
+  color: #333333;
+  background-color: #f1f1f1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
   background-color: #984856;
   color: white;
-  padding: 10px 20px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.banner {
+  background-color: #edcecb;
+  color: #423a3a;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  width: 100%;
 }
 
 .navbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  height: 100px;
+}
+
+.logo {
+  position: relative;
+  left: 20px;
+}
+
+.logo img {
+  width: 100px;
+  display: block;
+  padding: 10px;
+  height: auto;
+}
+
+.cart {
+  position: relative;
+  right: 20px;
+}
+
+.cart img {
+  width: 60px;
+  display: block;
+  padding: 10px;
+  height: auto;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
-  margin: 0;
+  gap: 150px;
+  margin: 0 auto;
   padding: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: white;
+  color: #f1f1f1;
   transition: color 0.3s;
+  font-size: 1.3em;
 }
 
 .nav-links a:hover {
   color: #edcecb;
 }
 
-.logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
 /* Hero Section */
-.hero {
-  height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("placeholder.jpg") center/cover no-repeat;
+.img-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  margin-top: 0px;
+}
+
+.img-container img {
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.hero-content {
   text-align: center;
-  padding: 20px;
+  margin: 0px 0;
 }
 
 .hero-content h1 {
   font-size: 3em;
-  margin: 0 0 20px;
+  margin: 50px 0 10px;
+  color: #423a3a;
 }
 
 .hero-content p {
   font-size: 1.2em;
-  margin: 0 0 30px;
+  margin: 0 0 50px;
+  color: #423a3a;
+  padding: 10px;
+}
+
+/* Grid Section */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1500px;
+  align-items: center;
+}
+
+.grid-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Evenly space text and button */
+  align-items: center;
+  padding: 0px;
+  text-align: center;
+  height: 100%; /* Fill grid cell */
+}
+
+.grid-container .text1,
+.grid-container .text2 {
+  gap: 10px; /* Space between h2, p, and button */
+}
+
+.grid-container h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.grid-container p {
+  font-size: 1em;
+  margin: 0;
+  padding: 0px 100px;
+}
+
+.image1,
+.image2 {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.image1 img,
+.image2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and fill the space */
 }
 
 .btn {
   background-color: #edcecb;
-  color: #984856;
+  color: #333333;
   padding: 10px 20px;
+  margin: 50px;
   border: none;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 1.5em;
   cursor: pointer;
   text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
@@ -79,13 +190,62 @@ header {
   color: white;
 }
 
+/* About */
+#about {
+  margin: 0 200px;
+}
+
 /* Footer */
 footer {
-  background-color: #984856;
-  color: white;
+  background-color: #d1d1d1;
+  color: #333333;
   text-align: center;
   padding: 10px 20px;
-  position: relative;
+  margin-top: auto; /* Push footer to the bottom */
+  width: 100%;
+}
+
+/* Contact Form Styles */
+.contact-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.contact-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  background-color: #edcecb;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #984856;
+  color: white;
 }
 
 /* Additional Animations */
@@ -93,4 +253,11 @@ footer {
 .btn:hover {
   transform: scale(1.05);
   transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+    grid-template-rows: auto; /* Adjust height automatically */
+  }
 }
