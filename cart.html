@@ -24,11 +24,26 @@
       </nav>
     </header>
 
-    <section id="cart" class="cart">
-      <h1>Your Cart</h1>
-      <p>No items in the cart yet.</p>
-      <button class="shopify-buy-btn">Checkout with Shopify</button>
-    </section>
+    <main>
+      <div class="cart-container">
+        <div class="cart-header">
+          <span>Product</span>
+          <span>Quantity</span>
+          <span>Price</span>
+          <span>Total</span>
+        </div>
+        <div class="cart-items">
+          <!-- Dynamic Product Items -->
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span>Total Cost:</span>
+            <span id="total-cost">$0.00</span>
+          </div>
+          <button class="checkout-button">Checkout</button>
+        </div>
+      </div>
+    </main>
 
     <footer>
       <p>&copy; 2025 Roller Cane. All rights reserved.</p>
