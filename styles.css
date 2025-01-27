@@ -197,6 +197,7 @@ main {
   grid-template-columns: 1fr 1fr; /* Two equal-width columns */
   gap: 20px;
   align-items: start;
+  margin: 0px 10px;
 }
 
 /* Adjustments for responsiveness */
@@ -319,6 +320,7 @@ main {
 /* Right Section - Product Details */
 .product-selection {
   flex: 1;
+  padding: 5%;
 }
 
 .product-selection h1 {
@@ -334,6 +336,8 @@ main {
 }
 
 .color-options {
+  display: flex;
+  align-items: center;
   margin: 20px 0;
 }
 
@@ -343,7 +347,7 @@ main {
   height: 30px;
   background-color: #984856;
   border-radius: 50%;
-  margin-right: 10px;
+  margin: 0px 10px;
   border: 2px solid transparent;
   cursor: pointer;
 }
@@ -359,16 +363,7 @@ main {
   border-radius: 5px;
   overflow: hidden;
   width: fit-content;
-}
-
-.quantity button {
-  background-color: #f1f1f1;
-  color: #000;
-  border: solid;
-  padding: 0px;
-  font-size: 16px;
-  width: 40px;
-  text-align: center;
+  height: 50px;
 }
 
 .quantity input {
@@ -376,16 +371,26 @@ main {
   text-align: center;
   border: none;
   font-size: 16px;
+  background-color: #f1f1f1;
 }
 
 .product-selection button {
   background-color: #edcecb;
   color: #333333;
-  border: solid;
-  border-radius: 5px;
+  border: none;
+  border-radius: 0px;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.quantity button {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  font-size: 16px;
+  width: 40px;
+  text-align: center;
 }
 
 .product-selection .quantity-add-cart {
@@ -395,24 +400,32 @@ main {
   margin-top: 20px;
 }
 
-button {
+.add-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 250px;
+  height: 50px;
+}
+
+/* button {
   padding: 10px 20px;
   border: solid;
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
-}
+/* } */
 
-button:hover {
+.add-cart:hover {
   background-color: #984856;
   color: white;
 }
+*/
 
 /* Expandable Sections */
-.container {
-  max-width: 900px;
-  margin: 20px 0 20px 0;
-  padding: 20px;
+.expandable {
+  max-width: 900px; /* Controls the maximum width of the container */
 }
 
 .section-header {
@@ -424,6 +437,8 @@ button:hover {
   cursor: pointer;
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
+  margin: 20px;
+  max-width: 900px;
 }
 
 .section-header .arrow {
@@ -433,6 +448,7 @@ button:hover {
 .section-content {
   padding: 10px 0;
   display: none;
+  margin: 20px;
 }
 
 .active .arrow {
@@ -444,7 +460,7 @@ button:hover {
 }
 
 .section-header:hover {
-  color: #007bff;
+  color: #9f9f9f;
 }
 
 /* Additional Photos */

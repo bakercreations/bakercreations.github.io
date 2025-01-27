@@ -26,66 +26,26 @@ window.addEventListener("scroll", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const mainImage = document.querySelector(".main-image img");
   const thumbnails = document.querySelectorAll(".thumbnail-images img");
-  const leftArrow = document.querySelector(".arrow.left");
-  const rightArrow = document.querySelector(".arrow.right");
-  const expandableSections = document.querySelectorAll(".expandable h3");
-  const quantityInput = document.querySelector(".quantity input");
-  const quantityButtons = document.querySelectorAll(".quantity button");
   const fullscreenOverlay = document.querySelector(".fullscreen-overlay");
   const fullscreenImage = fullscreenOverlay.querySelector("img");
   const closeButton = fullscreenOverlay.querySelector(".close-button");
-  const modal = document.createElement("div");
+  const modalLeftArrow = fullscreenOverlay.querySelector(".arrow.left");
+  const modalRightArrow = fullscreenOverlay.querySelector(".arrow.right");
 
   let currentImageIndex = 0;
 
-  // Setup modal structure
-  modal.classList.add("image-modal");
-
-  const modalImage = modal.querySelector("img");
-  const closeModal = modal.querySelector(".close-modal");
-
-  // Update main image and active thumbnail
-  function updateMainImage(index) {
-    currentImageIndex = index;
-    mainImage.src = thumbnails[index].src;
-    thumbnails.forEach((thumb, i) => {
-      thumb.classList.toggle("active", i === index);
-    });
-  }
-
-  // Left and right arrow functionality
-  leftArrow.addEventListener("click", () => {
-    currentImageIndex =
-      (currentImageIndex - 1 + thumbnails.length) % thumbnails.length;
-    updateMainImage(currentImageIndex);
-  });
-
-  rightArrow.addEventListener("click", () => {
-    currentImageIndex = (currentImageIndex + 1) % thumbnails.length;
-    updateMainImage(currentImageIndex);
-  });
-
-  // Click on thumbnails
-  thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener("click", () => {
-      updateMainImage(index);
-    });
-  });
-
-  // Enlarge main image on click
-  mainImage.addEventListener("click", () => {
-    mainImage.classList.toggle("enlarge");
-  });
-
+  // Update fullscreen image
   const updateFullscreenImage = (index) => {
     fullscreenImage.src = thumbnails[index].src;
   };
 
+  // Show fullscreen modal
   mainImage.addEventListener("click", () => {
     fullscreenOverlay.style.display = "flex";
     updateFullscreenImage(currentImageIndex);
   });
 
+  // Close fullscreen modal
   closeButton.addEventListener("click", () => {
     fullscreenOverlay.style.display = "none";
   });
@@ -96,39 +56,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Functions to open and close the modal
-  const openModal = () => {
-    modal.classList.add("open");
-    modalImage.src = thumbnails[currentImageIndex].src;
-  };
-
-  const closeModalHandler = () => {
-    modal.classList.remove("open");
-  };
-
-  // Navigate images
-  const navigateImage = (direction) => {
+  // Navigate fullscreen images
+  modalLeftArrow.addEventListener("click", () => {
     currentImageIndex =
-      (currentImageIndex + direction + thumbnails.length) % thumbnails.length;
-    modalImage.src = thumbnails[currentImageIndex].src;
+      (currentImageIndex - 1 + thumbnails.length) % thumbnails.length;
+    updateFullscreenImage(currentImageIndex);
+  });
+
+  modalRightArrow.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex + 1) % thumbnails.length;
+    updateFullscreenImage(currentImageIndex);
+  });
+
+  // Update main image and active thumbnail
+  const updateMainImage = (index) => {
+    currentImageIndex = index;
+    mainImage.src = thumbnails[index].src;
+    thumbnails.forEach((thumb, i) => {
+      thumb.classList.toggle("active", i === index);
+    });
   };
 
-  // Event listeners
-  mainImage.addEventListener("click", openModal);
-  closeModal.addEventListener("click", closeModalHandler);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModalHandler();
-  });
-  leftArrow.addEventListener("click", () => navigateImage(-1));
-  rightArrow.addEventListener("click", () => navigateImage(1));
+  // Navigate thumbnails from main gallery
+  const galleryLeftArrow = document.querySelector(".main-image .arrow.left");
+  const galleryRightArrow = document.querySelector(".main-image .arrow.right");
 
-  // Sync thumbnails and main image
+  galleryLeftArrow.addEventListener("click", () => {
+    currentImageIndex =
+      (currentImageIndex - 1 + thumbnails.length) % thumbnails.length;
+    updateMainImage(currentImageIndex);
+  });
+
+  galleryRightArrow.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex + 1) % thumbnails.length;
+    updateMainImage(currentImageIndex);
+  });
+
+  // Click on thumbnails to update main image
   thumbnails.forEach((thumbnail, index) => {
     thumbnail.addEventListener("click", () => {
-      currentImageIndex = index;
-      mainImage.src = thumbnail.src;
-      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
-      thumbnail.classList.add("active");
+      updateMainImage(index);
     });
   });
 
