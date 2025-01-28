@@ -107,17 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
       content.style.display = isOpen ? "none" : "block";
     });
   });
-
-  // Quantity adjustment
-  document.querySelector(".quantity").addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON") {
-      const action = event.target.dataset.action;
-      let currentValue = parseInt(quantityInput.value, 10) || 0;
-      if (action === "increase") currentValue += 1;
-      if (action === "decrease" && currentValue > 1) currentValue -= 1;
-      quantityInput.value = currentValue;
-    }
-  });
 });
 
 function toggleSection(sectionId) {
@@ -125,6 +114,59 @@ function toggleSection(sectionId) {
   section.classList.toggle("active");
 }
 
+// Global cart data (mocked for demonstration)
+const cartData = {
+  items: [],
+  addItem: function (item) {
+    const existingItem = this.items.find((i) => i.id === item.id);
+    if (existingItem) {
+      existingItem.quantity += item.quantity;
+    } else {
+      this.items.push(item);
+    }
+  },
+  calculateTotal: function () {
+    return this.items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  },
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Quantity adjustment functionality
+  const quantityInput = document.querySelector(".quantity input");
+  document.querySelector(".quantity").addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+      const action = event.target.dataset.action;
+      let currentValue = parseInt(quantityInput.value, 10) || 1;
+      if (action === "increase") currentValue += 1;
+      if (action === "decrease" && currentValue > 1) currentValue -= 1;
+      quantityInput.value = currentValue;
+    }
+  });
+
+  // Add to Cart button functionality
+  const addToCartButton = document.querySelector(".add-cart");
+  addToCartButton.addEventListener("click", () => {
+    const quantity = parseInt(quantityInput.value, 10) || 1;
+    const productName = "Roller Cane";
+    const productPrice = 49.99; // Example price
+
+    // Add product to the cart
+    cartData.addItem({
+      name: productName,
+      price: productPrice,
+      quantity,
+    });
+
+    // Display success message or update UI
+    alert(`${quantity} ${productName}(s) added to the cart.`);
+    console.log("Cart: ", cartData.items);
+  });
+});
+
+// Cart
 document.addEventListener("DOMContentLoaded", () => {
   // Mock Data for Cart Items
   const cartItems = [
