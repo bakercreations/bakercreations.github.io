@@ -114,127 +114,92 @@ function toggleSection(sectionId) {
   section.classList.toggle("active");
 }
 
-// Global cart data (mocked for demonstration)
-const cartData = {
-  items: [],
-  addItem: function (item) {
-    const existingItem = this.items.find((i) => i.id === item.id);
-    if (existingItem) {
-      existingItem.quantity += item.quantity;
-    } else {
-      this.items.push(item);
-    }
-  },
-  calculateTotal: function () {
-    return this.items.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  },
-};
-
+// Shopify Buy button
 document.addEventListener("DOMContentLoaded", () => {
-  // Quantity adjustment functionality
-  const quantityInput = document.querySelector(".quantity input");
-  document.querySelector(".quantity").addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON") {
-      const action = event.target.dataset.action;
-      let currentValue = parseInt(quantityInput.value, 10) || 1;
-      if (action === "increase") currentValue += 1;
-      if (action === "decrease" && currentValue > 1) currentValue -= 1;
-      quantityInput.value = currentValue;
-    }
-  });
+  // Only execute Shopify Buy Button script if on shop.html
+  if (!window.location.pathname.includes("shop.html")) {
+    return; // Exit the function, preventing execution on other pages
+  }
 
-  // Add to Cart button functionality
-  const addToCartButton = document.querySelector(".add-cart");
-  addToCartButton.addEventListener("click", () => {
-    const quantity = parseInt(quantityInput.value, 10) || 1;
-    const productName = "Roller Cane";
-    const productPrice = 49.99; // Example price
+  // Load Shopify Buy Button Script
+  const scriptURL =
+    "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
 
-    // Add product to the cart
-    cartData.addItem({
-      name: productName,
-      price: productPrice,
-      quantity,
-    });
-
-    // Display success message or update UI
-    alert(`${quantity} ${productName}(s) added to the cart.`);
-    console.log("Cart: ", cartData.items);
-  });
-});
-
-// Cart
-document.addEventListener("DOMContentLoaded", () => {
-  // Mock Data for Cart Items
-  const cartItems = [
-    {
-      id: 1,
-      name: "Roller Cane",
-      price: 49.99,
-      quantity: 1,
-      thumbnail: "images/shop_product_1.png",
-    },
-  ];
-
-  const cartItemsContainer = document.querySelector(".cart-items");
-  const totalCostElement = document.getElementById("total-cost");
-
-  // Function to calculate total cost
-  const calculateTotalCost = () => {
-    const total = cartItems.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
-    totalCostElement.textContent = `$${total.toFixed(2)}`;
-  };
-
-  // Function to render cart items
-  const renderCartItems = () => {
-    cartItemsContainer.innerHTML = "";
-    cartItems.forEach((item) => {
-      const cartItem = document.createElement("div");
-      cartItem.classList.add("cart-item");
-      cartItem.innerHTML = `
-        <img src="${item.thumbnail}" alt="${item.name}">
-        <span>${item.name}</span>
-        <div class="quantity-control">
-          <button data-action="decrease" data-id="${item.id}">-</button>
-          <input type="number" value="${item.quantity}" readonly>
-          <button data-action="increase" data-id="${item.id}">+</button>
-        </div>
-        <span>$${item.price.toFixed(2)}</span>
-        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-      `;
-      cartItemsContainer.appendChild(cartItem);
-    });
-
-    calculateTotalCost();
-  };
-
-  // Function to update quantity
-  const updateQuantity = (id, action) => {
-    const item = cartItems.find((item) => item.id === id);
-    if (item) {
-      if (action === "increase") {
-        item.quantity++;
-      } else if (action === "decrease" && item.quantity > 1) {
-        item.quantity--;
+  function loadShopifyScript(callback) {
+    if (window.ShopifyBuy) {
+      if (window.ShopifyBuy.UI) {
+        callback();
+        return;
       }
     }
-    renderCartItems();
-  };
 
-  // Event Listener for Quantity Buttons
-  cartItemsContainer.addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON") {
-      const id = parseInt(e.target.dataset.id, 10);
-      const action = e.target.dataset.action;
-      updateQuantity(id, action);
-    }
-  });
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = scriptURL;
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
 
-  // Initial Render
-  renderCartItems();
+  function ShopifyBuyInit() {
+    const client = ShopifyBuy.buildClient({
+      domain: "j7ug9u-vh.myshopify.com",
+      storefrontAccessToken: "af7bc0bf5c3cdb9388da2681595f7c74",
+    });
+
+    ShopifyBuy.UI.onReady(client).then((ui) => {
+      ui.createComponent("product", {
+        id: "9766695371056",
+        node: document.getElementById("product-component-1741459830828"),
+        moneyFormat: "%24%7B%7Bamount%7D%7D",
+        options: {
+          product: {
+            contents: {
+              img: false /* Hide product image */,
+              title: false /* Hide product title */,
+              price: false /* Hide price */,
+              description: false /* Hide description */,
+              button: true /* Show only the Buy Now button */,
+            },
+            text: {
+              button: "Buy Now",
+            },
+            styles: {
+              product: {
+                "text-align": "left" /* Align everything to the left */,
+              },
+              button: {
+                "background-color": "#edcecb",
+                color: "#333333",
+                padding: "10px 20px",
+                margin: "50px",
+                border: "none",
+                "font-size": "1.5em",
+                cursor: "pointer",
+                "text-decoration": "none",
+                transition: "background-color 0.3s, transform 0.2s",
+                ":hover": {
+                  "background-color": "#984856",
+                  color: "white",
+                  transform: "scale(1.05)",
+                },
+                ":focus": {
+                  "background-color": "#984856",
+                  color: "white",
+                },
+              },
+            },
+          },
+          cart: {
+            text: {
+              total: "Subtotal",
+              button: "Checkout",
+            },
+          },
+        },
+      });
+    });
+  }
+
+  // Load the script and initialize Shopify Buy Button
+  loadShopifyScript(ShopifyBuyInit);
 });
