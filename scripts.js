@@ -22,6 +22,16 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// Hamburger menu toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+});
+
 // Shop
 document.addEventListener("DOMContentLoaded", () => {
   const mainImage = document.querySelector(".main-image img");
@@ -202,4 +212,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load the script and initialize Shopify Buy Button
   loadShopifyScript(ShopifyBuyInit);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+  const successMessage = document.getElementById("form-success");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Stop normal form submission
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          form.reset(); // Clear the form fields
+          successMessage.style.display = "block"; // Show success message
+        } else {
+          alert("Oops! There was a problem submitting your form.");
+        }
+      } catch (error) {
+        alert("Oops! There was a problem submitting your form.");
+      }
+    });
+  }
 });
