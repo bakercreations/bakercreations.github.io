@@ -13,6 +13,9 @@
         <a href="index.html" class="logo">
           <img src="images/logo.svg" alt="Roller Cane Logo" />
         </a>
+
+        <div class="hamburger">&#9776;</div>
+
         <ul class="nav-links">
           <li><a href="shop.html">Shop</a></li>
           <li><a href="about.html">About</a></li>
@@ -21,49 +24,36 @@
       </nav>
     </header>
 
-    <form class="contact-form" action="send_email.php" method="POST">
+    <section class="contact-form">
       <h2>Contact Us</h2>
-      <p>
-        As a small business looking to deliver the best products and service, we
-        welcome your feedback.
-      </p>
-      <label for="name">Your Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Enter your name"
-        required
-      />
 
-      <label for="email">Your Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter your email"
-        required
-      />
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
 
-      <label for="subject">Subject</label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        placeholder="Enter the subject"
-      />
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
 
-      <label for="message">Your Message</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="5"
-        placeholder="Type your message here..."
-        required
-      ></textarea>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
 
-      <button type="submit">Send Message</button>
-    </form>
+        <button type="submit">Send Message</button>
+
+        <div
+          id="form-success"
+          style="display: none; color: green; margin-top: 20px"
+        >
+          Thank you! Your message has been sent.
+        </div>
+      </form>
+    </section>
+
+    <div
+      id="form-success"
+      style="display: none; color: green; margin-top: 20px"
+    >
+      Thank you! Your message has been sent.
+    </div>
 
     <footer>
       <p>&copy; 2025 Roller Cane. All rights reserved.</p>
