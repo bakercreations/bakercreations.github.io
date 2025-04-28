@@ -119,6 +119,9 @@ main {
   margin: 0 0 50px;
   color: #423a3a;
   padding: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Grid Section */
@@ -512,12 +515,12 @@ footer {
 /* Contact Form Styles */
 .contact-form {
   background: #ffffff;
-  padding: 40px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px; /* Wider on desktop */
-  width: 90%; /* Allow smaller screens to adjust */
-  margin: 50px auto; /* Center it */
+  max-width: 600px; /* smaller max width for cleaner mobile appearance */
+  width: 90%;
+  margin: 50px auto;
 }
 
 .contact-form h2 {
@@ -535,12 +538,13 @@ footer {
 .contact-form input,
 .contact-form textarea,
 .contact-form button {
-  width: 100%;
+  width: 100%; /* Make them fill the form width */
   padding: 12px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  box-sizing: border-box; /* important to prevent width overflow */
 }
 
 .contact-form button {
@@ -556,6 +560,13 @@ footer {
   background-color: #984856;
   color: white;
   transform: scale(1.05);
+}
+
+/* Status Message */
+#my-form-status {
+  margin-top: 20px;
+  color: green;
+  text-align: center;
 }
 
 /* Additional Animations */

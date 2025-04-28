@@ -215,33 +215,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  const successMessage = document.getElementById("form-success");
+  var form = document.getElementById("my-form");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("my-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          status.innerHTML =
+            "Thanks for your submission! We will get back to you shortly.";
+          form.reset();
+        } else {
+          response.json().then((data) => {
+            if (Object.hasOwn(data, "errors")) {
+              status.innerHTML = data["errors"]
+                .map((error) => error["message"])
+                .join(", ");
+            } else {
+              status.innerHTML =
+                "Oops! There was a problem submitting your form.";
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        status.innerHTML = "Oops! There was a problem submitting your form.";
+      });
+  }
 
   if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Stop normal form submission
-
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (response.ok) {
-          form.reset(); // Clear the form fields
-          successMessage.style.display = "block"; // Show success message
-        } else {
-          alert("Oops! There was a problem submitting your form.");
-        }
-      } catch (error) {
-        alert("Oops! There was a problem submitting your form.");
-      }
-    });
+    form.addEventListener("submit", handleSubmit);
   }
 });
