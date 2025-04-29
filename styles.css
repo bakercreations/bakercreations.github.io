@@ -89,6 +89,10 @@ main {
   color: #edcecb;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* Hero Section */
 .img-container {
   display: flex;
@@ -628,6 +632,7 @@ footer {
   .grid-container {
     display: grid;
     grid-template-columns: 1fr;
+    justify-items: center;
     grid-template-rows: auto;
     grid-template-areas:
       "image1"
@@ -646,10 +651,14 @@ footer {
 
   .image1 {
     order: 1;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .image2 {
     order: 3;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .text2 {
@@ -690,6 +699,9 @@ footer {
     order: 2;
     max-width: 90%;
     margin-top: 20px;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .about-text {
