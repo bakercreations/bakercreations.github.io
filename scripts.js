@@ -255,3 +255,23 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", handleSubmit);
   }
 });
+
+// Dynamic banner
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("banner-message");
+  const messages = [
+    "Free shipping on orders over $75",
+    "Limited Time: 20% off with code ROLLWITHIT20",
+  ];
+  let index = 0;
+
+  setInterval(() => {
+    banner.classList.add("fade-out");
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      banner.textContent = messages[index];
+      banner.classList.remove("fade-out");
+    }, 500);
+  }, 5000); // switch every 5 seconds
+});
