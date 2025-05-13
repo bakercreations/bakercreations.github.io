@@ -275,3 +275,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   }, 5000); // switch every 5 seconds
 });
+
+// Video
