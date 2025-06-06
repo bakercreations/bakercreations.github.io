@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "font-size": "1.5em",
                 cursor: "pointer",
                 "text-decoration": "none",
+                "border-radius": "0",
                 transition: "background-color 0.3s, transform 0.2s",
                 ":hover": {
                   "background-color": "#984856",
@@ -261,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById("banner-message");
   const messages = [
     "Free shipping on orders over $75",
-    "Limited Time: 20% off with code ROLLWITHIT20",
+    "New Release: 20% off with code ROLLWITHIT20",
   ];
   let index = 0;
 
