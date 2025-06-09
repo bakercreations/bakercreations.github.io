@@ -2,19 +2,23 @@
 html,
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   color: #333333;
   background-color: #f1f1f1;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 header {
@@ -512,7 +516,7 @@ main {
 /* About */
 .about {
   max-width: 1000px; /* Center the container */
-  margin: 50px auto;
+  margin: 40px auto;
   display: flex; /* Arrange children in a row */
   align-items: flex-start; /* Align items to the top */
   gap: 20px; /* Add space between the image and text */
@@ -521,11 +525,18 @@ main {
 .about-image {
   max-width: 300px; /* Adjust the image width */
   height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensures consistent alignment */
+  align-self: flex-start; /* Explicitly align image top */
 }
 
 .about-text {
   flex: 1; /* Make the text take up the remaining space */
   text-align: left; /* Ensure the text aligns to the left */
+}
+
+.about-text h1 {
+  margin-top: 0;
+  line-height: 1.2;
 }
 
 /* Footer */
@@ -614,7 +625,7 @@ footer {
 .instructions-content {
   max-width: 800px;
   margin: 0px auto;
-  padding: 20px;
+  padding: 0px;
   text-align: center;
 }
 
@@ -709,6 +720,31 @@ footer {
     order: 4;
   }
 
+  .product-container {
+    grid-template-columns: 1fr;
+    gap: 10px; /* Remove default row spacing */
+  }
+
+  .main-image {
+    margin-bottom: 0; /* Prevent extra space below image */
+  }
+
+  .product-selection {
+    padding-top: 10px; /* Reduce space above product info */
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .product-selection h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .product-selection p {
+    margin: 5px 0;
+  }
+
   .additional-section {
     flex-direction: column;
     align-items: center;
@@ -742,7 +778,7 @@ footer {
   .about-image {
     order: 2;
     max-width: 90%;
-    margin-top: 20px;
+    margin: 20px auto 0; /* Center horizontally with auto margins */
     width: 100%;
     height: auto;
     display: block;
@@ -758,5 +794,9 @@ footer {
     max-width: 100%; /* Ensure it doesn't exceed screen width */
     padding: 20px;
     margin: 20px auto;
+  }
+
+  .instructions-content h1 {
+    font-size: 1.4em;
   }
 }
