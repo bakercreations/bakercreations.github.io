@@ -124,97 +124,7 @@ function toggleSection(sectionId) {
   section.classList.toggle("active");
 }
 
-// Shopify Buy button
-document.addEventListener("DOMContentLoaded", () => {
-  // Only execute Shopify Buy Button script if on shop.html
-  if (!window.location.pathname.includes("shop.html")) {
-    return; // Exit the function, preventing execution on other pages
-  }
-
-  // Load Shopify Buy Button Script
-  const scriptURL =
-    "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
-
-  function loadShopifyScript(callback) {
-    if (window.ShopifyBuy) {
-      if (window.ShopifyBuy.UI) {
-        callback();
-        return;
-      }
-    }
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = scriptURL;
-    script.onload = callback;
-    document.head.appendChild(script);
-  }
-
-  function ShopifyBuyInit() {
-    const client = ShopifyBuy.buildClient({
-      domain: "j7ug9u-vh.myshopify.com",
-      storefrontAccessToken: "af7bc0bf5c3cdb9388da2681595f7c74",
-    });
-
-    ShopifyBuy.UI.onReady(client).then((ui) => {
-      ui.createComponent("product", {
-        id: "9766695371056",
-        node: document.getElementById("product-component-1741459830828"),
-        moneyFormat: "%24%7B%7Bamount%7D%7D",
-        options: {
-          product: {
-            contents: {
-              img: false /* Hide product image */,
-              title: false /* Hide product title */,
-              price: false /* Hide price */,
-              description: false /* Hide description */,
-              button: true /* Show only the Buy Now button */,
-            },
-            text: {
-              button: "Buy Now",
-            },
-            styles: {
-              product: {
-                "text-align": "left" /* Align everything to the left */,
-              },
-              button: {
-                "background-color": "#edcecb",
-                color: "#333333",
-                padding: "10px 20px",
-                margin: "50px",
-                border: "none",
-                "font-size": "1.5em",
-                cursor: "pointer",
-                "text-decoration": "none",
-                "border-radius": "0",
-                transition: "background-color 0.3s, transform 0.2s",
-                ":hover": {
-                  "background-color": "#984856",
-                  color: "white",
-                  transform: "scale(1.05)",
-                },
-                ":focus": {
-                  "background-color": "#984856",
-                  color: "white",
-                },
-              },
-            },
-          },
-          cart: {
-            text: {
-              total: "Subtotal",
-              button: "Checkout",
-            },
-          },
-        },
-      });
-    });
-  }
-
-  // Load the script and initialize Shopify Buy Button
-  loadShopifyScript(ShopifyBuyInit);
-});
-
+// Contact Form
 document.addEventListener("DOMContentLoaded", () => {
   var form = document.getElementById("my-form");
 
@@ -262,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById("banner-message");
   const messages = [
     "Free shipping on orders over $75",
-    "New Release: 20% off with code ROLLWITHIT20",
+    "New Release: Use ROLLWITHIT20 for 20% off",
   ];
   let index = 0;
 

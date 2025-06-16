@@ -208,10 +208,10 @@ main {
 .btn {
   background-color: #edcecb;
   color: #333333;
-  padding: 10px 20px;
-  margin: 50px;
+  padding: 8px 16px;
+  margin: 20px 0 0;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.2s;
@@ -430,6 +430,14 @@ main {
   align-items: center;
   gap: 10px;
   margin-top: 0px;
+}
+
+.quantity-add-cart {
+  justify-content: flex-start;
+}
+
+.quantity-add-cart .btn {
+  margin-left: 0;
 }
 
 .add-cart {
